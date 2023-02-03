@@ -65,7 +65,6 @@ img
 .card {
     padding: 3.1em 1.25em;
     text-align: center;
-    background: linear-gradient(0deg, #358df1 10px, transparent 10px);
     background-repeat: no-repeat;
     background-position: 0 0.62em;
     box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.15);
@@ -73,12 +72,13 @@ img
     transition: 0.5s;
     cursor: pointer;
 }
+
 .card .icon {
     font-size: 2.5em;
     height: 2em;
     width: 2em;
     margin: auto;
-    background-color: #358df1;
+    background-color: #4797f2;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -123,10 +123,12 @@ img
 }
 
 .logoCol1{
-    color: #358df1;
+    font-family: "Quicksand";
+    color: #4797f2;
     font-size: 1em;
 }
 .logoCol2{
+    font-family: "Quicksand";
     color:#ECA400;
     font-size: 1em;
 }

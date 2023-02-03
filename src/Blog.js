@@ -1,18 +1,9 @@
 import React from 'react';
-import style from "./css/card.module.css"
-import {wait} from "@testing-library/user-event/dist/utils";
+import Card from "./smallComponents/Card";
+import "./css/style.css"
 
 function Blog() {
-    let moreInfo = React.createRef();
-    function onHover(){
-        setTimeout(function(){
-            moreInfo.current.style.display = "block";
-        }, 150);
-    }
-    function onLeave(){
-        moreInfo.current.style.display = "none";
-    }
-    let card = {
+    let test = {
         subject: "Физика",
         grade: "10",
         heading: "Електромагнитни Вълни",
@@ -21,62 +12,104 @@ function Blog() {
         num_questions: 20,
         average_score: 87.5,
         students: 15,
-        time: 30
+        time: 30,
+        color1: "#358df1",
+        color2: "#4797f2",
     }
-    return (
-        <div className="center">
 
-            <div className={style.card} onMouseEnter={onHover} onMouseLeave={onLeave}>
-                <div className={style.additional}>
-                    <div className={style.userCard}>
-                        <h1 className={style.level}>
-                            {card.subject}
-                        </h1>
-                        <h1 className={style.points}>
-                            {card.grade} клас
-                        </h1>
-                    </div>
-                    <div className={style.more} ref={moreInfo}>
-                        <h1>Jane Doe</h1>
-                        <div className={style.coords}>
-                            <span>Group Name</span>
-                            <span>Joined January 2019</span>
+    function toggleClass( ref, className){
+        if (ref.classList.contains(className))
+            ref.classList.remove(className);
+        else
+            ref.classList.add(className);
+    }
+    let trigger = React.createRef();
+    let filter = React.createRef();
+    let gallery = React.createRef();
+
+    function OnTrigger(){
+        //"filter-is-visible"
+        toggleClass(trigger.current, "filter-is-visible");
+        toggleClass(filter.current, "filter-is-visible");
+        toggleClass(gallery.current, "filter-is-visible");
+    }
+
+    function OnCloseOpen(e){
+        toggleClass(e.target, "closed")
+        toggleClass(e.target.parentNode.children[1], "hide")
+    }
+
+    return (
+        <div>
+            <main className="cd-main-content">
+                <section ref={gallery} className="cd-gallery">
+                    <ul>
+                        <Card test={test}/>
+                        <Card test={test}/>
+                        <Card test={test}/>
+                        <Card test={test}/>
+                    </ul>
+                    <div className="cd-fail-message">Няма резултати</div>
+                </section>
+                <div ref={filter} className="cd-filter">
+                    <form>
+                        <div className="cd-filter-block">
+                            <h4 onClick={OnCloseOpen}>Потърси</h4>
+
+                            <div className="cd-filter-content">
+                                <input type="search" placeholder="Потърси..."/>
+                            </div>
                         </div>
-                        <div className={style.coords}>
-                            <span>Position/Role</span>
-                            <span>City, Country</span>
-                        </div>
-                        <div className={style.stats}>
-                            <div>
-                                <div className={style.title}>Awards</div>
-                                <i className="fa fa-trophy"></i>
-                                <div className={style.value}>2</div>
-                            </div>
-                            <div>
-                                <div className={style.title}>Matches</div>
-                                <i className="fa fa-gamepad"></i>
-                                <div className={style.value}>27</div>
-                            </div>
-                            <div>
-                                <div className={style.title}>Pals</div>
-                                <i className="fa fa-group"></i>
-                                <div className={style.value}>123</div>
-                            </div>
-                            <div>
-                                <div className={style.title}>Coffee</div>
-                                <i className="fa fa-coffee"></i>
-                                <div className={[style.infinity, style.value]}>∞</div>
+
+                        <div className="cd-filter-block">
+                            <h4 onClick={OnCloseOpen}>ПРедмет</h4>
+
+                            <div className="cd-filter-content">
+                                <div className="cd-select cd-filters">
+                                    <select className="filter" name="selectThis" id="selectThis">
+                                        <option value=".option1">Математика</option>
+                                        <option value=".option2">БЕЛ</option>
+                                        <option value=".option3">АЕ</option>
+                                        <option value=".option4">Физика</option>
+                                        <option value=".option4">Химия</option>
+                                        <option value=".option4">Биология</option>
+                                        <option value=".option4">История</option>
+                                        <option value=".option4">География</option>
+                                        <option value=".option4">Музика</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div className="cd-filter-block">
+                            <h4 onClick={OnCloseOpen}>Клас</h4>
+
+                            <div className="cd-filter-content">
+                                <div className="cd-select cd-filters">
+                                    <select className="filter" name="selectThis" id="selectThis">
+                                        <option value=".option1">1 клас</option>
+                                        <option value=".option2">2 клас</option>
+                                        <option value=".option3">3 клас</option>
+                                        <option value=".option4">4 клас</option>
+                                        <option value=".option4">5 клас</option>
+                                        <option value=".option4">6 клас</option>
+                                        <option value=".option4">7 клас</option>
+                                        <option value=".option4">8 клас</option>
+                                        <option value=".option4">9 клас</option>
+                                        <option value=".option4">10 клас</option>
+                                        <option value=".option4">11 клас</option>
+                                        <option value=".option4">12 клас</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <a href="#0" className="cd-close" onClick={OnTrigger}>X</a>
                 </div>
-                <div className={style.general}>
-                    <h1>Jane Doe</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie
-                        lacus. Nam vestibulum sodales odio ut pulvinar.</p>
-                    <span className={style.more}>Mouse over the card for more info</span>
-                </div>
-            </div>
+
+                <a href="#0" ref={trigger} className="cd-filter-trigger" onClick={OnTrigger}>Филтри</a>
+                </main>
         </div>
     );
 }

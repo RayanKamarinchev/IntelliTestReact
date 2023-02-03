@@ -6,12 +6,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Quicksand";
-  font-size: 20px;
-}
-
-p, h3, h1{
   font-family: "Open Sans";
+  font-size: 20px;
 }
 
 .html{
@@ -72,18 +68,26 @@ p, h3, h1{
 .navbar a{
   color: #444;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 800;
   transition: color 0.3s ease-in-out;
   font-size: 25px;
 }
 
+.active{
+  color: #4797f2 !important;
+}
+
 .navbar a:hover{
-  color: #358df1;
+  color: #4797f2;
 }
 
 a{
   text-decoration: none;
-  color: #358df1;
+  color: #4797f2;
+}
+
+ul, il{
+  list-style: none;
 }
 
 @media (max-width: 768px){
